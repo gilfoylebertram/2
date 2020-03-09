@@ -1,0 +1,38 @@
+%{
+int yylex();
+#include <stdio.h>     /* C declarations used in actions */
+#include <stdlib.h>
+#include <ctype.h>
+
+%}
+
+/* Yacc definitions */
+
+%%
+
+/* descriptions of expected inputs     corresponding actions (in C) */
+
+%%                     /* C code */
+
+int main (void) {
+
+	return yyparse ( );
+}
+
+void yyerror (char *s) {
+	fprintf (stderr, "%s\n", s);
+} 
+
+
+%{
+#include <stdio.h>
+#include "y.tab.h"
+int yylex();
+extern int yylval;
+%}
+%%
+
+REGEX
+
+%%
+int yywrap (void) {return 1;}
